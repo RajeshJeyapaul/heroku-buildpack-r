@@ -51,6 +51,8 @@ mkdir -p $CACHE_DIR
 echo "Vendoring R $R_VERSION" | indent
 echo "R gz $R_BINARIES" | indent 
 
+ln -s /usr/lib/libreadline.so /lib/libreadline.so.5
+
 echo `ls -l /usr/lib/libreadline*`
 
 # download and unpack binaries
