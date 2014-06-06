@@ -56,7 +56,7 @@ mkdir -p $VENDOR_DIR && curl $R_BINARIES -s -o - | tar xzf - -C $VENDOR_DIR
 
 #mario create these as links , not copy them
 ln -s $VENDOR_DIR /app/vendor
-
+R_BASE="/app/vendor/R"
   
 # need to copy the binaries to /app/vendor so that R works
 #cp -R $VENDOR_DIR/gcc-$GCC_VERSION /app/vendor/gcc-$GCC_VERSION
