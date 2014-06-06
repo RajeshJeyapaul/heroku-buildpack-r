@@ -51,8 +51,6 @@ mkdir -p $CACHE_DIR
 echo "Vendoring R $R_VERSION" | indent
 echo "R gz $R_BINARIES" | indent 
 
-ln -s /usr/lib/libreadline.so /lib/libreadline.so.5
-
 echo `ls -l /usr/lib/libreadline*`
 
 # download and unpack binaries
@@ -75,7 +73,7 @@ export LDFLAGS="-L/app/vendor/gcc-$GCC_VERSION/lib64/"
 export CPPFLAGS="-I/app/vendor/glibc-$GLIBC_VERSION/string/ -I/app/vendor/glibc-$GLIBC_VERSION/time"
 export R_HOME=$R_BASE/lib64/R
 export R_INCLUDE=$R_HOME/include
-export LD_LIBRARY_PATH=/app/vendor/gcc-$GCC_VERSION/lib64:$R_HOME:$R_HOME/lib:$LD_LIBRARY_PATH
+#export LD_LIBRARY_PATH=/app/vendor/gcc-$GCC_VERSION/lib64:$R_HOME:$R_HOME/lib:$LD_LIBRARY_PATH
 
 # copy over environment
 mkdir -p $BUILD_DIR/.profile.d
