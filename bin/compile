@@ -59,7 +59,7 @@ mkdir -p $VENDOR_DIR && curl $R_BINARIES -s -o - | tar xzf - -C $VENDOR_DIR
 
 #mario create these as links , not copy them
 ln -s $VENDOR_DIR /app/vendor
-R_BASE="/app/vendor/R"
+R_BASE="/home/vacpp/app/vendor/R"
   
 # need to copy the binaries to /app/vendor so that R works
 #cp -R $VENDOR_DIR/gcc-$GCC_VERSION /app/vendor/gcc-$GCC_VERSION
@@ -68,9 +68,9 @@ R_BASE="/app/vendor/R"
 
 
 # R needs to know where gfortran and glibc header files are
-export PATH=/app/vendor/R/bin:/app/vendor/gcc-$GCC_VERSION/bin:$PATH
-export LDFLAGS="-L/app/vendor/gcc-$GCC_VERSION/lib64/"
-export CPPFLAGS="-I/app/vendor/glibc-$GLIBC_VERSION/string/ -I/app/vendor/glibc-$GLIBC_VERSION/time"
+export PATH=/home/vacpp/app/vendor/R/bin:/app/vendor/gcc-$GCC_VERSION/bin:$PATH
+export LDFLAGS="-L/home/vacpp/app/vendor/gcc-$GCC_VERSION/lib64/"
+export CPPFLAGS="-I/home/vacpp/app/vendor/glibc-$GLIBC_VERSION/string/ -I/home/vacpp/app/vendor/glibc-$GLIBC_VERSION/time"
 export R_HOME=$R_BASE/lib64/R
 export R_INCLUDE=$R_HOME/include
 #export LD_LIBRARY_PATH=/app/vendor/gcc-$GCC_VERSION/lib64:$R_HOME:$R_HOME/lib:$LD_LIBRARY_PATH
@@ -87,7 +87,7 @@ touch /app/vendor/R/lib64/R/doc/html/R.css
 echo "Executing init.r script" | indent
 
 # set the CRAN mirror and run the init.r program
-/app/vendor/R/bin/R -s <<RPROG > indent
+/home/vacpp/app/vendor/R/bin/R -s <<RPROG > indent
   Sys.setenv(BUILD_DIR="$BUILD_DIR")
   setwd("$BUILD_DIR")
   r <- getOption("repos");
@@ -102,17 +102,17 @@ echo "R $R_VERSION successfully installed" | indent
 rm -rf $VENDOR_DIR && mkdir -p $VENDOR_DIR
 
 mkdir -p $VENDOR_DIR/gcc-$GCC_VERSION
-cp -R /app/vendor/gcc-$GCC_VERSION $VENDOR_DIR/gcc-$GCC_VERSION
+cp -R /home/vacpp/app/vendor/gcc-$GCC_VERSION $VENDOR_DIR/gcc-$GCC_VERSION
 
 mkdir -p $VENDOR_DIR/glibc-$GLIBC_VERSION
-cp -R /app/vendor/glibc-$GLIBC_VERSION $VENDOR_DIR/glibc-$GLIBC_VERSION
+cp -R /home/vacpp/app/vendor/glibc-$GLIBC_VERSION $VENDOR_DIR/glibc-$GLIBC_VERSION
 
 mkdir -p $VENDOR_DIR/R
-cp -R /app/vendor/R/* $VENDOR_DIR/R
+cp -R /home/vacpp/app/vendor/R/* $VENDOR_DIR/R
 
 # HACK
 mkdir -p $VENDOR_DIR/R/lib64/R/lib
-cp /app/vendor/gcc-$GCC_VERSION/lib64/* $VENDOR_DIR/R/lib64/R/lib
+cp /home/vacpp/app/vendor/gcc-$GCC_VERSION/lib64/* $VENDOR_DIR/R/lib64/R/lib
 
 # remove unneeded files to make slug smaller
 # pushd $VENDOR_DIR/gcc-$GCC_VERSION > /dev/null && rm -rf !(lib64) && popd > /dev/null
