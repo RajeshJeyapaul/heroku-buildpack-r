@@ -27,7 +27,10 @@ function indent() {
 unset GIT_DIR
 
 # parse and derive params
-echo "Rajesh Test: " +$1 + $2 +"dirname"+ $(dirname $0)
+echo "Rajesh Test:  "
+echo $1  
+echo $2  
+echo $(dirname $0) 
 BUILD_DIR=$1
 CACHE_DIR="$2/vendor"
 LP_DIR=`cd $(dirname $0); cd ..; pwd`
@@ -40,7 +43,8 @@ GCC_VERSION="4.3"
 GLIBC_VERSION="2.7"
 R_VERSION="2.15.1"
 
-echo "Rajesh Test S3 Bucket:" + ${S3_BUCKET}
+echo "Rajesh Test S3 Bucket:" 
+
 S3_BUCKET="heroku-buildpack-r"
 R_BINARIES="http://${S3_BUCKET}.s3.amazonaws.com/R-${R_VERSION}-binaries-${BUILD_PACK_VERSION}.tar.gz"
 
