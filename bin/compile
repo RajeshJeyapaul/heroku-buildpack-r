@@ -61,7 +61,7 @@ echo "Downloading and unpacking R binaries" | indent
 mkdir -p $VENDOR_DIR && curl $R_BINARIES -s -o - | tar xzf - -C $VENDOR_DIR
 
 #mario create these as links , not copy them
-ln -s $VENDOR_DIR /app/vendor
+ln -s $VENDOR_DIR /home/vacpp/app/vendor
 R_BASE="/home/vacpp/app/vendor/R"
   
 # need to copy the binaries to /app/vendor so that R works
@@ -71,7 +71,7 @@ R_BASE="/home/vacpp/app/vendor/R"
 
 
 # R needs to know where gfortran and glibc header files are
-export PATH=/home/vacpp/app/vendor/R/bin:/app/vendor/gcc-$GCC_VERSION/bin:$PATH
+export PATH=/home/vacpp/app/vendor/R/bin:/home/vacpp/app/vendor/gcc-$GCC_VERSION/bin:$PATH
 export LDFLAGS="-L/home/vacpp/app/vendor/gcc-$GCC_VERSION/lib64/"
 export CPPFLAGS="-I/home/vacpp/app/vendor/glibc-$GLIBC_VERSION/string/ -I/home/vacpp/app/vendor/glibc-$GLIBC_VERSION/time"
 export R_HOME=$R_BASE/lib64/R
