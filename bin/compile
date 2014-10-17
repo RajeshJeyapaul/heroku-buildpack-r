@@ -28,9 +28,7 @@ unset GIT_DIR
 
 # parse and derive params
 echo "Rajesh Test:  "
-echo $1  
-echo $2  
-echo $(dirname $0) 
+
 BUILD_DIR=$1
 CACHE_DIR="$2/vendor"
 LP_DIR=`cd $(dirname $0); cd ..; pwd`
